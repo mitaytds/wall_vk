@@ -7,8 +7,13 @@
 </head>
 <body>
 	<script type="text/javascript">
+		function getUrl(method, params) {
+			params = params || {};
+			params['access_token'] = 'e26e60fc6f6ff085eb569ea21d09af506829942b998b481b2cc82bdf2669f3160987bccee69413f7e6a7c';
+			return 'https://api.vk.com/method/'+ method +'?' + $.param(params);
+		}
 		$.ajax({
-			url: 'https://api.vk.com/method/wall.get?count=3&access_token=e26e60fc6f6ff085eb569ea21d09af506829942b998b481b2cc82bdf2669f3160987bccee69413f7e6a7c&v=5.52',
+			url: getUrl('wall.get', {count: 3}),
 			method: 'GET',
 			dataType: 'JSONP',
 			success: function (data) {
