@@ -2,24 +2,48 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="javascript/jquery/jquery-3.2.1.min.js"></script>
 	<title>wall vk</title>
 </head>
 <body>
+	<div class="wall">
+		<button id="load"></button>
+		<div class="out"></div>
+	</div>
 	<script type="text/javascript">
+
+		$('.wall').ready(loadWall);
+		
 		function getUrl(method, params) {
 			params = params || {};
 			params['access_token'] = 'e26e60fc6f6ff085eb569ea21d09af506829942b998b481b2cc82bdf2669f3160987bccee69413f7e6a7c';
 			return 'https://api.vk.com/method/'+ method +'?' + $.param(params);
 		}
-		$.ajax({
-			url: getUrl('wall.get', {count: 3}),
-			method: 'GET',
-			dataType: 'JSONP',
-			success: function (data) {
+		function sentRequest (method, params, func) {
+			$.ajax({
+				url: getUrl(method, params),
+				method: 'GET',
+				dataType: 'JSONP',
+				success: func
+			});
+		}
+		function loadWall () {
+			sentRequest ('wall.get', {count: 2, filter: 'all'}, function (data) {
+				outWall (data.response);
 				console.log(data);
+
+			});
+		};
+		function outWall (text) {
+			var html = '';
+			for (var i = 0; i < text.length; i++) {
+				var t = text[i];
+				html += '<p>'+ t.text +'</p>';
 			}
-		});
+			$('.out').html(html);
+		}
+		
 	</script>
 </body>
 </html>
