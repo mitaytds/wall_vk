@@ -7,7 +7,14 @@
 </head>
 <body>
 	<script type="text/javascript">
-
+		$.ajax({
+			url: 'https://api.vk.com/method/wall.get?count=3&access_token=e26e60fc6f6ff085eb569ea21d09af506829942b998b481b2cc82bdf2669f3160987bccee69413f7e6a7c&v=5.52',
+			method: 'GET',
+			dataType: 'JSONP',
+			success: function (data) {
+				console.log(data);
+			}
+		});
 	</script>
 </body>
 </html>
