@@ -46,10 +46,10 @@ table {
 .wall{
 	width: 500px;
 	min-height: 500px;
-	margin: 0 auto;
+	margin: 20px auto;
 	background: lightgreen;
 }
 p{
-	width: 32px;
-	color: #fff;
+	font-size: 21px;
+	color: #000;
 }
